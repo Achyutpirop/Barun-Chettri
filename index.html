@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17131f">
+  <meta name="description" content="Barun Chettri is a student passionate about coding and cricket, inspired by MS Dhoni.">
+  <title>Barun Chettri | Student, Coder &amp; Cricketer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #17131f;
+      --surface: #1d1827;
+      --surface-raised: #241e31;
+      --ink: #f5f3f8;
+      --muted: #b7afc3;
+      --line: rgba(231, 218, 255, 0.14);
+      --accent: #c3a4ff;
+      --accent-ink: #211832;
+      --orange: #efb766;
+      --header: rgba(23, 19, 31, 0.82);
+      --shadow: rgba(4, 2, 8, 0.36);
+      font-family: "Manrope", sans-serif;
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --page: #f6f3fa;
+      --surface: #eee9f5;
+      --surface-raised: #faf8fd;
+      --ink: #241d2e;
+      --muted: #665d71;
+      --line: rgba(50, 37, 69, 0.16);
+      --accent: #7047ad;
+      --accent-ink: #fff;
+      --orange: #aa6920;
+      --header: rgba(246, 243, 250, 0.9);
+      --shadow: rgba(36, 26, 52, 0.15);
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--page); }
+    body { margin: 0; color: var(--ink); background: var(--page); font-family: "Manrope", sans-serif; transition: color 450ms ease, background-color 450ms ease; }
+    body, button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    button { font: inherit; }
+    ::selection { color: var(--accent-ink); background: var(--accent); }
+
+    .site-header { position: fixed; z-index: 5; top: 0; left: 0; display: flex; width: 100%; height: 86px; align-items: center; justify-content: space-between; padding: 0 clamp(22px, 6.7vw, 104px); border-bottom: 1px solid var(--line); background: var(--header); backdrop-filter: blur(16px); transition: background-color 450ms ease, border-color 450ms ease; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-decoration: none; }
+    .brand-mark { display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid var(--accent); color: var(--accent); font-family: "DM Mono", monospace; font-size: 13px; letter-spacing: 0; }
+    .main-nav { display: flex; align-items: center; gap: clamp(22px, 4vw, 56px); }
+    .main-nav a, .text-link { position: relative; color: var(--muted); font-size: 12px; font-weight: 700; text-decoration: none; transition: color 180ms ease; }
+    .main-nav a::after { position: absolute; right: 0; bottom: -8px; left: 0; height: 1px; background: var(--accent); content: ""; transform: scaleX(0); transform-origin: right; transition: transform 220ms ease; }
+    .main-nav a:hover, .main-nav a:focus-visible, .text-link:hover, .text-link:focus-visible { color: var(--accent); }
+    .main-nav a:hover::after, .main-nav a:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+    .theme-toggle { display: inline-flex; min-width: 93px; min-height: 40px; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; font-size: 11px; font-weight: 700; transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease, transform 200ms ease; }
+    .theme-toggle:hover, .theme-toggle:focus-visible { border-color: var(--accent); background: var(--surface-raised); color: var(--accent); transform: translateY(-2px); }
+    .theme-icon { color: var(--accent); font-size: 17px; line-height: 1; }
+
+    .hero { position: relative; display: grid; min-height: 790px; height: min(900px, 100svh); grid-template-columns: 1fr 0.95fr; align-items: center; gap: 4vw; overflow: hidden; padding: 120px clamp(22px, 9vw, 140px) 90px clamp(22px, 12vw, 184px); }
+    .hero::before { position: absolute; inset: 0; background: radial-gradient(60% 50% at 75% 30%, rgba(146, 92, 215, 0.28), transparent 70%), radial-gradient(50% 40% at 15% 70%, rgba(230, 166, 82, 0.13), transparent 70%); content: ""; pointer-events: none; }
+    .hero::after { position: absolute; top: 13%; left: -230px; width: 520px; aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; content: ""; animation: slow-turn 72s linear infinite; pointer-events: none; }
+    .hero-copy { position: relative; z-index: 1; max-width: 550px; padding-bottom: 30px; animation: rise-in 850ms both; }
+    .eyebrow, .section-index, .interest-number, .inspiration-name, .footer-year { font-family: "DM Mono", monospace; font-size: 10px; letter-spacing: 1.1px; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 28px; color: var(--muted); }
+    .status-dot { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 70%, transparent); }
+    h1, h2, h3, p { margin-top: 0; }
+    .hero h1 { margin: 0; font-size: clamp(64px, 8vw, 116px); font-weight: 700; line-height: 0.99; letter-spacing: 0; }
+    .hero h1 span, .about h2 span, .interests-heading h2 span, .closing-copy h2 span { color: var(--accent); }
+    .hero-lede { max-width: 410px; margin: 27px 0 0; color: var(--muted); font-size: 15px; line-height: 1.9; }
+    .hero-actions { display: flex; align-items: center; gap: 28px; margin-top: 36px; }
+    .button { display: inline-flex; min-height: 49px; align-items: center; gap: 20px; padding: 0 18px; font-size: 11px; font-weight: 800; text-decoration: none; transition: transform 200ms ease, background-color 200ms ease, box-shadow 200ms ease; }
+    .button:hover { transform: translateY(-3px); }
+    .button-primary { background: var(--accent); color: var(--accent-ink); }
+    .button-primary:hover, .button-primary:focus-visible { background: color-mix(in srgb, var(--accent) 82%, white); box-shadow: 0 10px 30px color-mix(in srgb, var(--accent) 25%, transparent); }
+    .button-primary span { font-size: 17px; }
+    .text-link { display: inline-flex; align-items: center; gap: 9px; }
+    .text-link span { color: var(--accent); font-size: 16px; }
+    .hero-note { display: flex; align-items: center; gap: 12px; margin-top: 72px; color: var(--muted); font-family: "DM Mono", monospace; font-size: 10px; }
+    .note-line { width: 35px; height: 1px; background: var(--orange); }
+    .hero-visual { position: relative; display: grid; width: 100%; max-width: 540px; height: min(570px, 63vh); min-height: 420px; place-items: center; justify-self: end; animation: rise-in 900ms 120ms both; }
+    .hero-glow { position: absolute; width: 75%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(145, 97, 221, 0.28), rgba(145, 97, 221, 0.08) 50%, transparent 72%); filter: blur(10px); }
+    .monogram-frame { position: relative; display: grid; width: min(78%, 380px); aspect-ratio: 1; align-content: center; justify-items: center; border: 1px solid rgba(195, 164, 255, 0.46); background: linear-gradient(145deg, rgba(50, 38, 68, 0.45), rgba(25, 20, 35, 0.7)); box-shadow: 0 35px 100px var(--shadow), inset 0 0 80px rgba(162, 112, 228, 0.08); transition: transform 350ms ease, border-color 350ms ease, box-shadow 350ms ease; }
+    .monogram-frame:hover { transform: translateY(-7px) rotate(-1deg); border-color: var(--accent); box-shadow: 0 45px 110px var(--shadow), 0 0 48px rgba(162, 112, 228, 0.15); }
+    .monogram { color: var(--ink); font-size: clamp(100px, 18vw, 220px); font-weight: 800; line-height: 0.9; letter-spacing: 0; }
+    .monogram-caption { margin-top: 20px; color: var(--muted); font-family: "DM Mono", monospace; font-size: 9px; letter-spacing: 1.4px; }
+    .visual-label { position: absolute; z-index: 1; color: var(--muted); font-family: "DM Mono", monospace; font-size: 9px; letter-spacing: 1px; }
+    .visual-label i { padding-inline: 7px; color: var(--orange); font-style: normal; }
+    .visual-label-top { top: 16%; right: 1%; }
+    .visual-label-bottom { bottom: 15%; left: 0; }
+    .orbit { position: absolute; z-index: 0; border: 1px solid var(--accent); border-radius: 50%; pointer-events: none; }
+    .orbit-one { top: 8%; right: 1%; width: 112px; height: 112px; opacity: 0.6; animation: slow-turn 20s linear infinite; }
+    .orbit-two { right: 2%; bottom: 12%; width: 54px; height: 54px; border-color: var(--orange); opacity: 0.8; }
+    .scroll-cue { position: absolute; bottom: 35px; left: clamp(22px, 12vw, 184px); display: flex; align-items: center; gap: 12px; color: var(--muted); font-family: "DM Mono", monospace; font-size: 9px; letter-spacing: 1px; text-decoration: none; }
+    .scroll-cue i { position: relative; width: 1px; height: 31px; overflow: hidden; background: var(--line); }
+    .scroll-cue i::after { position: absolute; top: -12px; left: 0; width: 1px; height: 12px; background: var(--accent); content: ""; animation: scroll-line 1.6s ease-in-out infinite; }
+
+    .section-wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .about { position: relative; display: grid; min-height: 570px; grid-template-columns: 0.7fr 1.3fr; align-items: start; gap: 80px; padding-top: 115px; padding-bottom: 115px; border-top: 1px solid var(--line); }
+    .section-index { display: flex; align-items: center; gap: 13px; color: var(--muted); font-size: 9px; opacity: 0; transform: translateY(14px); transition: opacity 700ms ease, transform 700ms ease; }
+    .section-index.is-visible, .about-content.is-visible, .interest-item.is-visible, .closing-copy.is-visible { opacity: 1; transform: translateY(0); }
+    .section-index > span:first-child { color: var(--accent); }
+    .index-rule { width: 36px; height: 1px; background: var(--line); }
+    .about-content { max-width: 600px; opacity: 0; transform: translateY(18px); transition: opacity 800ms ease, transform 800ms ease; }
+    .about-content .eyebrow { margin-bottom: 17px; }
+    .about h2, .interests-heading h2, .closing-copy h2 { margin: 0; font-size: clamp(42px, 5.5vw, 70px); font-weight: 700; line-height: 1.08; }
+    .body-copy { max-width: 560px; margin: 28px 0 0; color: var(--muted); font-size: 14px; line-height: 1.95; }
+    .body-copy-small { margin-top: 13px; font-size: 12px; }
+    .about-signoff { display: flex; align-items: center; gap: 12px; margin-top: 32px; color: var(--muted); font-size: 11px; font-weight: 700; }
+    .signoff-mark { display: grid; width: 35px; height: 35px; place-items: center; border: 1px solid var(--accent); color: var(--accent); font-family: "DM Mono", monospace; font-size: 10px; }
+    .about-stamp { position: absolute; right: 7%; bottom: 54px; display: flex; width: 100px; height: 100px; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); font-family: "DM Mono", monospace; font-size: 8px; letter-spacing: 1px; transform: rotate(-12deg); }
+    .stamp-star { color: var(--orange); font-size: 13px; line-height: 1; }
+
+    .interests { padding: 92px 0 118px; background: var(--surface); transition: background-color 450ms ease; }
+    .interests-heading { display: flex; align-items: end; justify-content: space-between; margin: 56px 0 44px; }
+    .interests-heading .eyebrow { margin-bottom: 17px; }
+    .interests-heading h2 { font-size: clamp(39px, 5vw, 62px); }
+    .heading-aside { margin: 0 6% 6px 25px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+    .interest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .interest-item { min-height: 330px; padding: 30px; border: 1px solid var(--line); background: var(--surface-raised); box-shadow: 0 12px 32px transparent; opacity: 0; transform: translateY(20px); transition: opacity 800ms ease, transform 800ms ease, border-color 250ms ease, background-color 450ms ease, box-shadow 250ms ease; }
+    .interest-item:hover { border-color: var(--accent); background: color-mix(in srgb, var(--surface-raised) 86%, var(--accent)); box-shadow: 0 20px 44px var(--shadow); transform: translateY(-6px); }
+    .interest-item + .interest-item { padding-right: 30px; padding-left: 30px; }
+    .interest-top { display: flex; align-items: center; justify-content: space-between; }
+    .interest-number { color: var(--muted); font-size: 9px; }
+    .interest-symbol { color: var(--accent); font-family: "DM Mono", monospace; font-size: 20px; }
+    .cricket-ball { position: relative; width: 19px; height: 19px; border: 1px solid var(--orange); border-radius: 50%; }
+    .cricket-ball::after { position: absolute; top: 1px; left: 8px; width: 1px; height: 15px; background: var(--orange); content: ""; transform: rotate(38deg); }
+    .interest-item h3 { margin: 30px 0 14px; font-size: 30px; font-weight: 700; }
+    .interest-item p { max-width: 440px; min-height: 82px; margin-bottom: 22px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+    .interest-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .interest-tags span { padding: 7px 10px; border: 1px solid var(--line); color: var(--muted); font-family: "DM Mono", monospace; font-size: 9px; }
+
+    .inspiration { position: relative; display: flex; min-height: 600px; align-items: center; overflow: hidden; border-block: 1px solid var(--line); background: var(--page); transition: background-color 450ms ease; }
+    .inspiration-glow { position: absolute; inset: 0; background: radial-gradient(56% 75% at 76% 40%, rgba(146, 92, 215, 0.3), transparent 70%), radial-gradient(36% 42% at 20% 85%, rgba(230, 166, 82, 0.15), transparent 70%); }
+    .inspiration-content { position: relative; z-index: 1; padding-top: 78px; padding-bottom: 78px; }
+    .section-index-light { margin-bottom: 86px; color: var(--muted); }
+    .section-index-light .index-rule { background: var(--line); }
+    .inspiration-content > .eyebrow { color: var(--muted); }
+    .inspiration h2 { margin: 0; font-size: clamp(52px, 7.5vw, 92px); line-height: 1.02; }
+    .inspiration h2 span { color: var(--accent); }
+    .inspiration-copy { max-width: 460px; margin: 25px 0 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
+    .inspiration-name { margin: 34px 0 0; color: var(--ink); font-size: 10px; }
+    .inspiration-name span { color: var(--accent); }
+
+    .contact { padding-top: 105px; padding-bottom: 110px; }
+    .contact-layout { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 10%; margin-top: 55px; }
+    .closing-copy { max-width: 490px; opacity: 0; transform: translateY(18px); transition: opacity 800ms ease, transform 800ms ease; }
+    .closing-copy .eyebrow { margin-bottom: 18px; }
+    .closing-copy h2 { margin: 0; font-size: clamp(42px, 5vw, 65px); line-height: 1.08; }
+    .contact-copy { max-width: 390px; margin-top: 24px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+    .contact-form { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 26px; border: 1px solid var(--line); background: var(--surface); transition: border-color 250ms ease, background-color 450ms ease, box-shadow 250ms ease; }
+    .contact-form:hover, .contact-form:focus-within { border-color: var(--accent); box-shadow: 0 20px 52px var(--shadow); }
+    .contact-form label { margin-top: 7px; color: var(--muted); font-family: "DM Mono", monospace; font-size: 9px; letter-spacing: 0.6px; }
+    .contact-form input, .contact-form textarea { width: 100%; min-width: 0; border: 1px solid var(--line); border-radius: 0; outline: none; padding: 12px 13px; background: var(--page); color: var(--ink); font: 12px "Manrope", sans-serif; resize: vertical; transition: border-color 200ms ease, background-color 450ms ease, box-shadow 200ms ease; }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); opacity: 0.75; }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+    .contact-form .button { width: fit-content; margin-top: 10px; border: 0; cursor: pointer; }
+    .form-status { min-height: 1em; margin: 0; color: var(--orange); font-size: 11px; line-height: 1.6; }
+    .site-footer { display: flex; min-height: 88px; align-items: center; justify-content: space-between; gap: 20px; padding: 18px clamp(22px, 9vw, 140px); border-top: 1px solid var(--line); }
+    .footer-brand { color: var(--ink); font-family: "DM Mono", monospace; font-size: 20px; font-weight: 500; text-decoration: none; }
+    .footer-brand span { color: var(--accent); }
+    .site-footer p { margin: 0; color: var(--muted); font-size: 10px; }
+    .footer-contact { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 10px; font-weight: 700; text-decoration: none; transition: color 200ms ease, transform 200ms ease; }
+    .footer-contact span { color: var(--accent); font-size: 15px; }
+    .footer-contact:hover { color: var(--accent); transform: translateY(-2px); }
+    .button:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+    @keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slow-turn { to { transform: rotate(360deg); } }
+    @keyframes scroll-line { 0% { transform: translateY(0); } 100% { transform: translateY(43px); } }
+
+    @media (max-width: 850px) {
+      .site-header { height: 74px; padding-inline: 25px; }
+      .hero { min-height: 740px; height: auto; grid-template-columns: 1fr 0.85fr; gap: 25px; padding: 145px 35px 100px 55px; }
+      .hero h1 { font-size: clamp(58px, 9vw, 82px); }
+      .hero-visual { min-height: 390px; height: 52vw; }
+      .hero-note { margin-top: 48px; }
+      .about { grid-template-columns: 0.55fr 1.45fr; gap: 35px; }
+      .about-stamp { right: 2%; bottom: 25px; }
+    }
+
+    @media (max-width: 620px) {
+      :root { scroll-padding-top: 110px; }
+      .site-header { height: auto; min-height: 98px; flex-wrap: wrap; padding: 10px 18px 0; }
+      .brand { gap: 8px; font-size: 9px; letter-spacing: 0.8px; }
+      .brand-mark { width: 34px; height: 34px; font-size: 11px; }
+      .main-nav { order: 3; display: flex; width: 100%; justify-content: center; gap: clamp(16px, 5vw, 25px); padding: 9px 0 11px; border-top: 1px solid var(--line); }
+      .main-nav a { font-size: 10px; }
+      .main-nav a::after { bottom: -5px; }
+      .theme-toggle { min-width: 80px; min-height: 36px; }
+      .hero { display: flex; min-height: auto; flex-direction: column; align-items: stretch; gap: 38px; padding: 150px 22px 84px; }
+      .hero::after { top: 7%; left: -255px; }
+      .hero-copy { padding-bottom: 0; }
+      .hero .eyebrow { margin-bottom: 20px; font-size: 9px; }
+      .hero h1 { font-size: clamp(64px, 16vw, 92px); }
+      .hero-lede { max-width: 370px; margin-top: 20px; font-size: 13px; }
+      .hero-actions { flex-wrap: wrap; gap: 18px; margin-top: 25px; }
+      .button { min-height: 45px; }
+      .text-link { font-size: 11px; }
+      .hero-note { margin-top: 30px; }
+      .hero-visual { width: calc(100% - 18px); height: 106vw; min-height: 340px; max-height: 500px; }
+      .monogram-frame { width: min(78%, 330px); }
+      .monogram { font-size: clamp(105px, 32vw, 170px); }
+      .visual-label-top { top: 13%; right: 0; }
+      .visual-label-bottom { bottom: 12%; }
+      .orbit-one { top: 4%; right: -1%; width: 92px; height: 92px; }
+      .orbit-two { right: 0; bottom: 7%; width: 44px; height: 44px; }
+      .scroll-cue { bottom: 20px; left: 22px; }
+      .section-wrap { width: calc(100% - 44px); }
+      .about { min-height: auto; grid-template-columns: 1fr; gap: 54px; padding-top: 78px; padding-bottom: 95px; }
+      .about h2 { font-size: clamp(42px, 11vw, 58px); }
+      .body-copy { margin-top: 22px; font-size: 13px; }
+      .about-stamp { right: 8px; bottom: 18px; width: 77px; height: 77px; font-size: 6px; }
+      .interests { padding: 74px 0 82px; }
+      .interests-heading { display: block; margin: 43px 0 30px; }
+      .interests-heading h2 { font-size: clamp(38px, 10vw, 54px); }
+      .heading-aside { margin: 17px 0 0; font-size: 11px; }
+      .interest-grid { grid-template-columns: 1fr; }
+      .interest-item { min-height: auto; padding: 25px 22px 30px; }
+      .interest-item + .interest-item { padding: 29px 22px 24px; }
+      .interest-item h3 { margin-top: 21px; font-size: 27px; }
+      .interest-item p { min-height: 0; margin-bottom: 18px; }
+      .inspiration { min-height: 560px; }
+      .inspiration-content { padding-top: 60px; padding-bottom: 83px; }
+      .section-index-light { margin-bottom: 76px; }
+      .inspiration h2 { font-size: clamp(52px, 13vw, 72px); }
+      .inspiration-copy { font-size: 12px; }
+      .contact { padding-top: 78px; padding-bottom: 82px; }
+      .contact-layout { grid-template-columns: 1fr; gap: 34px; margin-top: 42px; }
+      .closing-copy h2 { font-size: clamp(40px, 10vw, 54px); }
+      .contact-form { padding: 20px; }
+      .site-footer { min-height: 82px; flex-wrap: wrap; padding: 17px 22px; }
+      .site-footer p { order: 3; width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="BC, home"><span class="brand-mark">BC</span><span>BARUN CHETTRI</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#learning">Learning</a>
+      <a href="#cricket">Cricket</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+      <span class="theme-icon" aria-hidden="true">☼</span>
+      <span class="theme-label">Light</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> STUDENT · ALWAYS LEARNING</p>
+        <h1 id="hero-title">Hello, I’m<br><span>Barun Chettri.</span></h1>
+        <p class="hero-lede">A student passionate about coding, cricket, and discovering how things work. I’m building my skills one idea at a time.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#learning">Explore what I’m learning <span aria-hidden="true">↘</span></a>
+          <a class="text-link" href="#contact">Say hello <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="hero-note"><span class="note-line"></span><span>Learn · Build · Grow</span></div>
+      </div>
+      <div class="hero-visual" aria-label="Barun Chettri monogram with coding and cricket motifs">
+        <div class="hero-glow"></div>
+        <div class="monogram-frame"><span class="monogram">BC</span><span class="monogram-caption">BARUN CHETTRI · STUDENT</span></div>
+        <span class="visual-label visual-label-top">CODE <i>✳</i> CREATE</span>
+        <span class="visual-label visual-label-bottom">CRICKET <i>✳</i> GROW</span>
+        <span class="orbit orbit-one" aria-hidden="true"></span>
+        <span class="orbit orbit-two" aria-hidden="true"></span>
+      </div>
+      <a class="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <section class="about section-wrap" id="about" aria-labelledby="about-title">
+      <div class="section-index"><span>01</span><span class="index-rule"></span><span>THE SHORT VERSION</span></div>
+      <div class="about-content">
+        <p class="eyebrow">ABOUT ME</p>
+        <h2 id="about-title">Curious mind.<br><span>Growing skills.</span></h2>
+        <p class="body-copy">I’m Barun Chettri, a student who enjoys learning by trying things out. Coding gives me a way to turn ideas into projects, while cricket teaches me patience, focus, and teamwork.</p>
+        <p class="body-copy body-copy-small">I’m at the beginning of the journey, building confidence with every new challenge and staying curious about what I can learn next.</p>
+        <div class="about-signoff"><span class="signoff-mark">BC</span><span>Small steps. Big curiosity.</span></div>
+      </div>
+      <div class="about-stamp" aria-hidden="true"><span>LEARN</span><span class="stamp-star">✳</span><span>BUILD</span><span class="stamp-star">✳</span><span>GROW</span></div>
+    </section>
+
+    <section class="interests" id="learning" aria-labelledby="interests-title">
+      <div class="section-wrap interests-inner">
+        <div class="section-index"><span>02</span><span class="index-rule"></span><span>MY INTERESTS</span></div>
+        <div class="interests-heading">
+          <div><p class="eyebrow">WHAT I’M LEARNING</p><h2 id="interests-title">Curiosity in <span>action.</span></h2></div>
+          <p class="heading-aside">Exploring new ideas.<br>Learning by doing.</p>
+        </div>
+        <div class="interest-grid">
+          <article class="interest-item coding-item">
+            <div class="interest-top"><span class="interest-number">01 / LEARN</span><span class="interest-symbol" aria-hidden="true">&lt;/&gt;</span></div>
+            <h3>Coding</h3>
+            <p>I’m passionate about coding and the way it turns a question into something you can make. I’m exploring the basics, practising problem-solving, and looking forward to creating more of my own projects.</p>
+            <div class="interest-tags"><span>Explore</span><span>Problem solving</span><span>Create</span></div>
+          </article>
+          <article class="interest-item cricket-item" id="cricket">
+            <div class="interest-top"><span class="interest-number">02 / PLAY</span><span class="cricket-ball" aria-hidden="true"></span></div>
+            <h3>Cricket</h3>
+            <p>Cricket is one of my favourite ways to challenge myself. I love the teamwork and the focus it takes to keep going, especially when a match gets intense.</p>
+            <div class="interest-tags"><span>Teamwork</span><span>Focus</span><span>Keep learning</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="inspiration" aria-labelledby="inspiration-title">
+      <div class="inspiration-glow" aria-hidden="true"></div>
+      <div class="inspiration-content section-wrap">
+        <div class="section-index section-index-light"><span>03</span><span class="index-rule"></span><span>MY INSPIRATION</span></div>
+        <p class="eyebrow">A CRICKETER I ADMIRE</p>
+        <h2 id="inspiration-title">Stay calm.<br><span>Trust the team.</span></h2>
+        <p class="inspiration-copy">MS Dhoni is my cricket idol. I admire his calm leadership, his confidence in his team, and the way he handles pressure.</p>
+        <p class="inspiration-name">MS DHONI <span>· MY CRICKET IDOL</span></p>
+      </div>
+    </section>
+
+    <section class="contact section-wrap" id="contact" aria-labelledby="contact-title">
+      <div class="section-index"><span>04</span><span class="index-rule"></span><span>GET IN TOUCH</span></div>
+      <div class="contact-layout">
+        <div class="closing-copy"><p class="eyebrow">CONTACT</p><h2 id="contact-title">Have an idea?<br><span>Let’s talk.</span></h2><p class="contact-copy">I’m happy to hear from you about coding, cricket, school, or a new idea worth exploring.</p></div>
+        <form class="contact-form" id="contact-form">
+          <label for="sender-name">Your name</label>
+          <input id="sender-name" name="name" type="text" autocomplete="name" placeholder="Name" required>
+          <label for="sender-email">Your email</label>
+          <input id="sender-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <label for="sender-message">Message</label>
+          <textarea id="sender-message" name="message" rows="4" placeholder="Write a message..." required></textarea>
+          <button class="button button-primary" type="submit">Send message <span aria-hidden="true">↗</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="footer-brand" href="#home">BC<span>.</span></a><p>Barun Chettri · Student, coder &amp; cricket fan.</p><a class="footer-contact" href="#contact">Get in touch <span aria-hidden="true">↗</span></a></footer>
+
+  <script>
+    const themeToggle = document.querySelector(".theme-toggle");
+    const themeLabel = document.querySelector(".theme-label");
+    const themeIcon = document.querySelector(".theme-icon");
+    const savedTheme = localStorage.getItem("bc-theme");
+
+    function setTheme(theme) {
+      document.documentElement.dataset.theme = theme;
+      const isDark = theme === "dark";
+      themeLabel.textContent = isDark ? "Light" : "Dark";
+      themeIcon.textContent = isDark ? "☼" : "☾";
+      themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} theme`);
+      document.querySelector('meta[name="theme-color"]').content = isDark ? "#17131f" : "#f6f3fa";
+    }
+
+    setTheme(savedTheme || "dark");
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      localStorage.setItem("bc-theme", nextTheme);
+      setTheme(nextTheme);
+    });
+
+    document.querySelector("#contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const recipient = "";
+      const formData = new FormData(form);
+      const subject = `Portfolio message from ${formData.get("name")}`;
+      const body = `From: ${formData.get("name")}\nEmail: ${formData.get("email")}\n\n${formData.get("message")}`;
+      if (!recipient) {
+        document.querySelector("#form-status").textContent = "Email delivery needs Barun’s email address to be connected.";
+        return;
+      }
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".section-index, .about-content, .interest-item, .closing-copy").forEach((element) => revealObserver.observe(element));
+  </script>
+</body>
+</html>
